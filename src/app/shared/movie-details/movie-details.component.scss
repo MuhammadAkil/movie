@@ -1,0 +1,183 @@
+.icon-hover:hover {
+    border-color: #3b71ca !important;
+    background-color: white !important;
+    color: #3b71ca !important;
+}
+
+.icon-hover:hover i {
+    color: #3b71ca !important;
+}
+
+#screenshots {
+    margin-top: 50px;
+    text-align: center;
+    position: relative;
+
+    .screenshot {
+        transition: opacity .15s ease-in-out;
+        -moz-transition: opacity .15s ease-in-out;
+        -webkit-transition: opacity .15s ease-in-out;
+        // width: 33%;
+        display: inline-block;
+
+        img {
+            width: 100%;
+        }
+
+        a {
+            outline: 0;
+        }
+    }
+
+}
+
+#playTrailer {
+    position: absolute;
+    height: 100%;
+    width: 33%;
+}
+
+#playTrailer span {
+    background: url(https://yts.mx/assets/images/website/play-trailer.svg) no-repeat center center;
+    width: 85px;
+    height: 108px;
+    position: absolute;
+    bottom: 15%;
+    left: 40%;
+}
+
+#movie-sub-info h3,
+#movie-bottom h3 {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+#movie-sub-info,
+#movie-tech-specs,
+#movie-bottom {
+    text-align: left;
+}
+
+
+#movie-sub-info {
+    p {
+        color: #919191;
+        line-height: 24px;
+    }
+
+    .list-cast {
+        overflow: hidden;
+        border-bottom: 1px solid #2f2f2f;
+        padding: 10px 0;
+        // color: #fff;
+    }
+
+}
+
+.tableCell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.avatar-thumb {
+    width: 40px;
+    height: 40px;
+    display: block;
+    float: left;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+#movie-sub-info img,
+#comments .comment img {
+    height: 40px;
+    width: 40px;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+}
+
+
+#movie-sub-info .list-cast-info {
+    font-size: .9em;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.tableCell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#movie-sub-info .list-cast-info .name-cast,
+#movie-sub-info p a {
+    color: #919191;
+    font-size: .95em;
+    font-weight: bold;
+    transition: color .15s ease-in-out;
+    -moz-transition: color .15s ease-in-out;
+    -webkit-transition: color .15s ease-in-out;
+}
+
+#movie-sub-info .list-cast-info .name-cast,
+#movie-sub-info p a {
+    color: #919191;
+    font-size: .95em;
+    font-weight: bold;
+    transition: color .15s ease-in-out;
+    -moz-transition: color .15s ease-in-out;
+    -webkit-transition: color .15s ease-in-out;
+}
+
+@media (min-width: 992px) {
+    #movie-sub-info p {
+        margin: 24px 0;
+    }
+}
+
+.nav-link {
+    color: #fff;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.tab-pane .fade .show.active,
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #1d1d1d;
+    // border: 0;
+    // border-bottom: 1px solid;
+
+}
+
+.modal-content {
+    #modal-quality-720p {
+        background: url(../../../assets/720p-quality.svg) no-repeat center bottom;
+    }
+
+    #modal-quality-1080p {
+        background: url(../../../assets/1080p-quality.svg) no-repeat center bottom;
+    }
+
+    .modal-torrent:last-child {
+        border: 0;
+    }
+
+    .modal-torrent {
+        display: inline-block;
+        color: #cdcdcd;
+        // border-right: 1px solid #ccc;
+    }
+
+
+    .modal-quality {
+        width: 131px;
+        height: 81px;
+        margin: 0 auto;
+        margin-bottom: 25px;
+    }
+
+}

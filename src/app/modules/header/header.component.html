@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">
+            <img src="https://yts.mx/assets/images/website/logo-YTS.svg" height="30px" alt=""></a>
+        <p class="text-white d-flex alig-items-center mb-0">HD movies at the smallest file size</p>
+        <div class="d-flex align-items-center">
+            <input class=" me-2 form-control d-block d-lg-none my-3 my-lg-0" type="search" placeholder="Search"
+                aria-label="Search" [(ngModel)]="search" (keypress)="getMovies()">
+            <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-white">
+
+                <li class="nav-item position-relative d-none d-lg-block">
+
+                    <input class=" me-2 form-control" type="search" placeholder="Search" aria-label="Search"
+                        [(ngModel)]="search" (keypress)="getMovies()">
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-white active" aria-current="page" href="">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" routerLink="/trending-movies">Trending</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " routerLink="/browse-movies">Browse Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " routerLink="/browse-movies">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white " routerLink="/browse-movies">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container position-absolute"
+    style="width: 22%; right: 15%; top: 8%; background-color: #ffffff;z-index: 100; overflow-y: scroll; height: 80vh;"
+    *ngIf="search.trim() !== '' && movies && movies.length > 0">
+    <div class="row py-2 bg-dark pointer bg-hover" *ngFor="let movie of movies let i = index;"
+        (click)="movieDetails(movie.id)">
+        <div class="col-md-3">
+            <ng-container *ngIf="movie.medium_cover_image">
+                <img [src]="movie.medium_cover_image" class="card-img-top rounded-2 " title={{movie?.title_long}}
+                    alt="Movie Poster">
+            </ng-container>
+            <ng-container *ngIf="!movie.medium_cover_image">
+                <img src="assets/itme.jpg" class="card-img-top rounded-2" alt="Placeholder Image"
+                    title={{movie?.title_long}}>
+            </ng-container>
+        </div>
+        <div class="col-md-9">
+            <p class=" pt-2 mb-0 text-white text-ellipse" title={{movie?.title_long}}>{{ movie.title }}
+            </p>
+            <small class="text-white">{{ movie.year }}</small>
+        </div>
+    </div>
+</div>

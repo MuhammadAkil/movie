@@ -1,0 +1,409 @@
+<div class="loader-container" *ngIf="loading">
+    <div class="loader-logo"></div>
+</div>
+<div *ngFor="let item of movieDetails" [ngClass]="{ 'o-5': loading }">
+    <section class="" style="margin-top: 90px;">
+        <div class="container">
+            <div class="row gx-5">
+                <aside class="col-md-3 col-sm-6 col-12">
+                    <div class=" rounded-4 mb-3 d-flex justify-content-center ">
+                        <!-- <a data-fslightbox="mygalley" class="rounded-4" target="_blank" data-type="image"
+                        href={{item?.url}}> -->
+                        <img style="max-width:100%; max-height: 100vh; margin: auto;"
+                            class="rounded-4 img-fluid object-fit-contain fit border border-2 border-black w-100"
+                            src={{item?.medium_cover_image}} />
+                        <!-- </a> -->
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center flex-column ">
+                        <a class="btn btn-primary mb-2 w-100" data-fslightbox="mygalley" target="_blank"
+                            data-type="image" href={{item?.url}} title={{item?.title_long}}>Watch
+                            Now</a>
+                        <a class="btn btn-success w-100" title={{item?.title_long}} data-bs-toggle="modal"
+                            data-bs-target="#download"> <i class='bx bx-download me-1 fs-5' style='color:#20dc0f'></i>
+                            Download</a>
+                    </div>
+                </aside>
+                <main class="col-md-5 col-sm-6 col-12">
+                    <div class="ps-lg-3">
+                        <h4 class="title text-dark mb-3">
+                            {{ item?.title }}
+                        </h4>
+                        <div class="h5 mb-0">{{item?.year}} <small class="text-muted">[{{item?.language}}]</small></div>
+                        <span class="h5">{{item?.genres.join(' / ') }}</span>
+
+                        <div class="d-flex align-items-center pt-3 gap-1">
+                            <i>Available in:</i>
+                            <div *ngFor="let torrent of item?.torrents; let i=index">
+                                <a href={{torrent?.url}} title={{item?.title_long}}
+                                    class="badge px-2 py-1 bg-secondary">{{torrent?.quality}}.<span
+                                        class="text-uppercase">{{torrent?.type}}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <small class="text-muted py-1">WEB: same quality as BluRay</small>
+                        <div class="py-2">
+                            <span class="badge px-3 py-1 my-3 bg-secondary  d-flex align-items-center"
+                                style="width: fit-content;">
+                                <i class='bx bx-download me-1 fs-5' style='color:#20dc0f'></i>
+                                Request Subtitle
+                            </span>
+                        </div>
+                        <div class="py-1 w-50 d-flex align-items-center " *ngIf="item?.like_count>=0">
+                            <i class='bx bxs-heart fs-3' style='color:#20dc0f'></i>
+                            <h6 class="ms-5">{{item?.like_count}}</h6>
+                        </div>
+                        <div class="py-1 d-flex align-items-center " *ngIf="item?.rating!=''">
+                            <i class='bx bxs-heart fs-3' style='color:#20dc0f'></i>
+                            <span class="d-flex align-items-center">
+                                <div class="ms-5 pe-2">
+                                    <span class="h6">{{item?.rating}}</span>
+                                    <small>
+                                        <span class="text-muted small">AUDIENCE</span>
+                                        <span style="color: #20dc0f;"> . 2.5K
+                                            ratings</span>
+                                    </small>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="py-1 d-flex align-items-center ">
+                            <i class='bx bxs-heart fs-3' style='color:#20dc0f'></i>
+                            <span class="d-flex align-items-center">
+                                <div class="ms-5 pe-2">
+                                    <span class="h6">45%</span>
+                                    <small>
+                                        <span class="text-muted small">TOMATOMETER </span>
+                                        <span style="color: #20dc0f;"> · 42 reviews</span>
+                                    </small>
+                                </div>
+                            </span>
+                        </div>
+
+                        <div class="py-1 d-flex align-items-center ">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px"
+                                height="18.415px" viewBox="0 0 41 18.415" enable-background="new 0 0 41 18.415"
+                                xml:space="preserve">
+                                <g>
+                                    <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="20.5" y1="0"
+                                        x2="20.5" y2="18.415">
+                                        <stop offset="0" style="stop-color:#C8AA31" />
+                                        <stop offset="1" style="stop-color:#ECD939" />
+                                    </linearGradient>
+                                    <path fill="url(#SVGID_1_)" d="M41,17.111c0,0.72-0.584,1.304-1.304,1.304H1.304C0.583,18.415,0,17.831,0,17.111V1.304
+		C0,0.584,0.583,0,1.304,0h38.392C40.416,0,41,0.584,41,1.304V17.111z" />
+                                    <path fill="#231F1E" d="M7.786,15.452H4.688V2.812h3.097V15.452z M19.271,15.452h-2.643V8.357l-1.279,7.095h-1.913l-1.312-7.095
+		v7.095h-2.79V2.812h3.986l1.036,5.963l0.718-5.963h4.197V15.452z M20.906,15.452V2.812h3.465c2.063,0,2.564,0.204,3.154,0.612
+		c0.589,0.409,0.884,1.036,0.884,1.882v7.651c0,0.788-0.275,1.4-0.827,1.838c-0.55,0.438-1.213,0.657-3.193,0.657H20.906z
+		 M25.084,12.8V5.388c0-0.616-0.668-0.559-1.197-0.559v8.49C24.416,13.319,25.084,13.398,25.084,12.8z M32.371,14.793
+		c-0.217-0.094-0.411,0.659-0.411,0.659h-2.558V2.812h3.168v2.894c0.319-0.359,1.209-0.917,2.073-0.877
+		c0.864,0.04,1.992,0.678,1.913,1.738v7.351c0,0.517-0.228,0.925-0.681,1.225c-0.363,0.158-0.674,0.208-1.432,0.208
+		S32.587,14.887,32.371,14.793z M33.44,13.269l0.002-6.367c0-0.311-0.144-0.467-0.432-0.467c-0.293,0-0.44,0.149-0.44,0.45
+		l-0.002,6.384c0,0.312,0.147,0.528,0.44,0.528C33.296,13.797,33.44,13.58,33.44,13.269z" />
+                                </g>
+                            </svg>
+                            <span class="d-flex align-items-center">
+                                <div class="ms-5 pe-2">
+                                    <span class="h6">{{item?.rating}}</span>
+                                    <small>
+                                        <span class="text-muted small ">/10 </span>
+                                        <span class="ms-2" style="color: #20dc0f;"><i
+                                                class='bx bxs-star me-1'></i>2.5K</span>
+                                    </small>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </main>
+                <div class="col-md-4 col-sm-6 col-12">
+                    <div class="px-0 border rounded-2 shadow-0">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Similar Movies</h5>
+
+                                <div class="row mb-3 g-3">
+                                    <div class="col-md-6 col-4 col-xl-4"
+                                        *ngFor="let movie of movies.slice(-6) let i = index;">
+                                        <a href="#" class="w-100">
+                                            <!-- <img src="assets/itme.jpg" style="min-width: 96px; height: 96px;"
+                                                class="img-md img-thumbnail" /> -->
+                                            <img style="min-width:96px; height: 96px; margin: auto;" *ngIf="i<6"
+                                                class="img-md img-thumbnail" title={{movie?.title_long}}
+                                                src={{movie?.medium_cover_image}} />
+                                        </a>
+                                    </div>
+                                    <!-- <div class="col-md-6 col-4 col-xl-4">
+                                        <a href="#" class="w-100">
+                                            <img src="assets/itme.jpg" style="min-width: 96px; height: 96px;"
+                                                class="img-md img-thumbnail" />
+                                        </a>
+
+                                    </div>
+                                    <div class="col-md-6 col-4 col-xl-4">
+                                        <a href="#" class="w-100">
+                                            <img src="assets/itme.jpg" style="min-width: 96px; height: 96px;"
+                                                class="img-md img-thumbnail" />
+                                        </a>
+
+                                    </div>
+                                    <div class="col-md-6 col-4 col-xl-4">
+                                        <a href="#" class="w-100">
+                                            <img src="assets/itme.jpg" style="min-width: 96px; height: 96px;"
+                                                class="img-md img-thumbnail" />
+                                        </a>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container my-4 p-0">
+                <div id="screenshots" class="row hidden-xs hidden-sm d-flex justify-content-center">
+                    <div class="screenshot col-md-4 ">
+                        <a class="youtube cboxElement" href={{item?.url}} id="playTrailer"><span
+                                class="btn-play-trailer"></span></a>
+                        <a class="screenshot-group imghov cboxElement"
+                            href="https://img.yts.mx/assets/images/movies/about_alex_2014/large-screenshot1.jpg">
+                            <img src="https://img.yts.mx/assets/images/movies/about_alex_2014/medium-screenshot1.jpg"
+                                class="rounded-4" height="100%" alt={{item?.title}}></a>
+                    </div>
+                    <!-- <div class="screenshot col-md-4">
+                    <a class="screenshot-group imghov cboxElement"
+                        href="https://www.youtube.com/embed/YGraucjOUGI?rel=0&amp;wmode=transparent&amp;border=0&amp;autoplay=1&amp;iv_load_policy=3">
+                        <img src="https://img.yts.mx/assets/images/movies/land_of_mine_2015/large-screenshot2.jpg"
+                            height="100%" alt="About Alex (2014) download" id="playTrailer"><span
+                            class="btn-play-trailer"></span></a>
+                </div> -->
+                    <div class="screenshot col-md-4">
+                        <a class="screenshot-group imghov cboxElement"
+                            href="https://img.yts.mx/assets/images/movies/about_alex_2014/large-screenshot2.jpg"><img
+                                src="https://img.yts.mx/assets/images/movies/about_alex_2014/medium-screenshot2.jpg"
+                                class="rounded-4" alt="About Alex (2014) download"></a>
+                    </div>
+                    <div class="screenshot col-md-4">
+                        <a class="screenshot-group imghov cboxElement"
+                            href="https://img.yts.mx/assets/images/movies/about_alex_2014/large-screenshot3.jpg"><img
+                                class="rounded-4"
+                                src="https://img.yts.mx/assets/images/movies/about_alex_2014/medium-screenshot3.jpg"
+                                alt="About Alex (2014) download"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-light border-top py-4">
+        <div class="container">
+            <div id="movie-sub-info" class="row">
+                <div id="synopsis" class="col-md-8">
+                    <h3>Plot summary</h3>
+                    <p> When a group of old college friends reunite over a long weekend after one of them attempts
+                        suicide,
+                        old crushes and resentments shine light on their life decisions, and ultimately push friendships
+                        and
+                        relationships to the brink. </p>
+                    <p>
+                        <br> <em>Uploaded by: <a href="https://yts.mx/user/otto">OTTO</a> </em>
+                        <br> <span itemprop="dateCreated"><em>March 27, 2015 at 01:37 PM</em></span>
+                    </p>
+                </div>
+                <div id="crew" class="col-md-4">
+                    <div class="directors">
+                        <h3>Director</h3>
+                        <div class="list-cast">
+                            <div class="tableCell">
+                                <a class="avatar-thumb" href="https://www.imdb.com/name/nm5393484/" target="_blank"
+                                    title="Jesse Zwick IMDb Profile"> <img
+                                        src="https://img.yts.mx/assets/images/actors/thumb/default_avatar.jpg"
+                                        alt="Jesse Zwick Photo"> </a>
+                            </div>
+                            <div class="list-cast-info tableCell">
+                                <a class="name-cast" href="https://yts.mx/browse-movies/Jesse%20Zwick"><span
+                                        itemprop="director" itemscope="" itemtype="http://schema.org/Person"><span
+                                            itemprop="name">Jesse Zwick</span></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actors">
+                        <h3>Top cast</h3>
+                        <div class="list-cast">
+                            <div class="tableCell">
+                                <a class="avatar-thumb" href="https://www.imdb.com/name/nm2201555/" target="_blank"
+                                    title="Jesse Zwick IMDb Profile"> <img
+                                        src="https://img.yts.mx/assets/images/actors/thumb/nm2201555.jpg"
+                                        alt="Aubrey Plaza Photo"> </a>
+                            </div>
+                            <div class="list-cast-info tableCell">
+                                <a class="name-cast" href="https://yts.mx/browse-movies/Aubrey%20Plaza"><span
+                                        itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><span
+                                            itemprop="name">Aubrey Plaza</span></span></a> as Sarah
+                            </div>
+                        </div>
+                        <div class="list-cast">
+                            <div class="tableCell">
+                                <a class="avatar-thumb" href="https://www.imdb.com/name/nm1192254/" target="_blank"
+                                    title="Jesse Zwick IMDb Profile"> <img
+                                        src="https://img.yts.mx/assets/images/actors/thumb/nm1192254.jpg"
+                                        alt="Maggie Grace Photo"> </a>
+                            </div>
+                            <div class="list-cast-info tableCell">
+                                <a class="name-cast" href="https://yts.mx/browse-movies/Maggie%20Grace"><span
+                                        itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><span
+                                            itemprop="name">Maggie Grace</span></span></a> as Siri
+                            </div>
+                        </div>
+                        <div class="list-cast">
+                            <div class="tableCell">
+                                <a class="avatar-thumb" href="https://www.imdb.com/name/nm0339011/" target="_blank"
+                                    title="Jesse Zwick IMDb Profile"> <img
+                                        src="https://img.yts.mx/assets/images/actors/thumb/nm0339011.jpg"
+                                        alt="Max Greenfield Photo"> </a>
+                            </div>
+                            <div class="list-cast-info tableCell">
+                                <a class="name-cast" href="https://yts.mx/browse-movies/Max%20Greenfield"><span
+                                        itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><span
+                                            itemprop="name">Max Greenfield</span></span></a> as Josh
+                            </div>
+                        </div>
+                        <div class="list-cast">
+                            <div class="tableCell">
+                                <a class="avatar-thumb" href="https://www.imdb.com/name/nm3994408/" target="_blank"
+                                    title="Jesse Zwick IMDb Profile"> <img
+                                        src="https://img.yts.mx/assets/images/actors/thumb/nm3994408.jpg"
+                                        alt="Jane Levy Photo"> </a>
+                            </div>
+                            <div class="list-cast-info tableCell">
+                                <a class="name-cast" href="https://yts.mx/browse-movies/Jane%20Levy"><span
+                                        itemprop="actor" itemscope="" itemtype="http://schema.org/Person"><span
+                                            itemprop="name">Jane
+                                            Levy</span></span></a> as Kate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-dark border-top py-5  text-white">
+        <div class="container">
+            <ul class="nav nav-tabs" id="myTabs" role="tablist">
+                <button class="nav-link me-5 pe-5 fs-4 " id="nav-disabled-tab" data-bs-toggle="tab"
+                    data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled"
+                    aria-selected="false" disabled>Tech
+                    specs</button>
+
+                <li class="nav-item mt-4" *ngFor="let torrent of item?.torrents; let i = index">
+                    <a class="nav-link " [id]="'tab-' + i" data-bs-toggle="tab" [href]="'#pane-' + i" role="tab"
+                        [attr.aria-controls]="'pane-' + i" [attr.aria-selected]="i === activeTab"
+                        [ngClass]="{'active': i === activeTab}" (click)="activeTab= i">{{
+                        torrent.quality}}.<span class="text-uppercase">{{torrent?.type}}</span></a>
+                </li>
+
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" *ngFor="let torrent of item?.torrents; let i = index" [id]="'pane-' + i"
+                    role="tabpanel" [attr.aria-labelledby]="'tab-' + i" [class.active]="i === activeTab"
+                    [ngClass]="{'active show': i === activeTab}">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr class="">
+                                <td scope="col"><i class='bx bx-folder-open' style='color:#ffffff'></i>
+                                    {{torrent?.size}}
+                                </td>
+                                <td scope="col"><i class='bx bx-expand'></i>
+                                    {{ torrent?.quality === '720p' ? '1280*' + torrent?.quality : '1916*'
+                                    + torrent?.quality }}</td>
+                                <td scope="col"><i class='bx bxs-volume-full'></i>
+                                    {{item?.language}} {{torrent?.audio_channels}}</td>
+                                <td scope="col"><i class='bx bx-show'></i> NR</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <th scope="row"><i class='bx bx-captions'></i> Subtitles</th>
+                                <td><i class='bx bxs-movie-play'></i> 23.976 fps</td>
+                                <td><i class='bx bx-time' style='color:#ffffff'></i>{{time}}</td>
+                                <td>P/S {{torrent?.peers}}/{{torrent?.seeds}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Comment and reviews -->
+    <section class="bg-dark border-top py-5  text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><i class='bx bxs-comment-dots' style='color:#ffffff'></i> Comments</h4>
+                    <div></div>
+                </div>
+                <div class="col-md-6">
+                    <h4>
+                        <i class='bx bxs-star me-1' style="color: #20dc0f;"></i> Movie Reviews
+                    </h4>
+                    <small class="py-2">Reviewed by tomgillespie2002 <i class='bx bxs-star me-1'
+                            style="color: #20dc0f;"></i> 7 / 10
+                    </small>
+                    <p class="pt-2 fw-bold">Cold, emotionless, and gripping</p>
+                    <p class="text-justify">It was hard back then to cut out Lee Harvey Oswald's face, paste it on a
+                        body holding a gun, and
+                        then copy it so it looked like a real photo. Made conspiracy challenging. <br>
+                        "Executive Action" from 1973 is another film that theorizes how the assassination of JFK went
+                        down - this time, it's a bunch of rogue intelligence agents, conservative politicians, greedy
+                        businessmen who were worried about President Kennedy's policies on race relations, ending</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Modal -->
+    <div class="modal fade " id="download" tabindex="-1" aria-labelledby="downloadLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-block">
+                    <button type="button" class="btn-close text-end float-end" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                    <h1 class="modal-title mt-2 fs-6 text-center" id="downloadLabel">Select movie quality</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6" *ngFor="let torrent of item?.torrents let i = index;">
+                                <div class="modal-content" [ngClass]="{'border-end': i}">
+                                    <div class="modal-torrent text-center">
+                                        <div class="modal-quality my-3" [id]="'modal-quality-' + torrent?.quality"
+                                            *ngIf="torrent?.quality === '720p' || torrent?.quality === '1080p'">
+                                        </div>
+
+
+                                        <p class="quality-size text-black text-uppercase">{{torrent?.type}}</p>
+                                        <p>File size</p>
+                                        <p class="quality-size text-black">{{torrent?.size}}</p>
+                                        <a class="download-torrent btn btn-success" href={{torrent?.url}} rel="nofollow"
+                                            title={{item?.title_long}}><span class="icon-in"></span>
+                                            <i class='bx bx-download me-1 fs-5' style='color:#20dc0f'></i>Download</a>
+                                        <!-- <a data-torrent-id="119490"
+                                            href="magnet:?xt=urn:btih:00E28688DF41A6BC276309331C75632DE4ADFC4E&amp;dn=Executive+Action+%281973%29+%5B720p%5D+%5BYTS.MX%5D&amp;tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fopen.tracker.cl%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Fp4p.arenabg.com%3A1337%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce&amp;tr=udp%3A%2F%2Ftracker.dler.org%3A6969%2Fannounce&amp;tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&amp;tr=udp%3A%2F%2Fipv4.tracker.harry.lu%3A80%2Fannounce&amp;tr=https%3A%2F%2Fopentracker.i2p.rocks%3A443%2Fannounce"
+                                            class="magnet-download download-torrent magnet"
+                                            title="Download Executive Action 720p Magnet"
+                                            rel="nofollow"><span>Magnet</span></a> -->
+                                    </div>
+                                    <span class="text-center mt-3"><i class='bx bxs-magnet fs-3 bx-rotate-180'
+                                            style='color:#f83c3e'></i></span>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

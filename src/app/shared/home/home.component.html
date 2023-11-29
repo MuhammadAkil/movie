@@ -1,0 +1,167 @@
+<div class="loader-container" *ngIf="loading">
+    <div class="loader-logo"></div>
+</div>
+<div class="container-fluid p-0 " [ngClass]="{ 'o-5': loading }">
+    <div class="bg-image " id="background-image">
+        <div id="background-overlay" class="py-5">
+            <h2 class="text-center text-white mt-5 mb-3">Download YTS YIFY movies: HD smallest size</h2>
+            <p class="text-white text-center d-flex justify-content-center mb-0">
+                Welcome to the official YTS.MX website. Here you can browse and download YIFY movies in excellent <br>
+                720p,
+                1080p, 2160p 4K and 3D quality, all at the smallest file size. YTS Movies Torrents.
+            </p>
+            <p class="text-blue text-center mb-0">
+                <strong>IMPORTANT - YTS.MX</strong> is the only new official domain
+                for YIFY Movies
+            </p>
+            <p class="text-blue text-center"> YTSMX_UPDATES | Upcoming: GOLDA (2023) on 19 September.</p>
+
+            <div class="container-fluid">
+                <h4 class="text-center text-white"><i class='bx bxs-star' style='color:#c8cc0f'></i> Popular Downloads
+                </h4>
+                <div class="container">
+                    <hr class="bg-white text-white">
+                    <div class="row row-cols-1 row-cols-md-3 gap-4 my-2 justify-content-center">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let movie of movies let i = index;">
+                            <div class="card img-container border border-2 p-0 rounded">
+                                <figure class="m-0">
+                                    <!-- <img [src]="movie.medium_cover_image ? movie.medium_cover_image : 'assets/itme.jpg'"
+                                        class="card-img-top h-100" alt="Movie Poster" height="300px"> -->
+                                    <ng-container *ngIf="movie.medium_cover_image">
+                                        <img [src]="movie.medium_cover_image" class="card-img-top h-100"
+                                            title={{movie?.title_long}} alt="Movie Poster" height="300px">
+                                    </ng-container>
+                                    <ng-container *ngIf="!movie.medium_cover_image">
+                                        <img src="assets/itme.jpg" class="card-img-top h-100" alt="Placeholder Image"
+                                            title={{movie?.title_long}} height="300px">
+                                    </ng-container>
+
+
+                                    <figcaption>
+                                        <div class="overlay">
+                                            <h4 class="card-title py-2"><i class='bx bxs-star'
+                                                    style='color:#c8cc0f'></i>
+                                            </h4>
+                                            <h4 class="card-title">{{ movie.rating }} / 10</h4>
+                                            <h4 class="py-2">{{ movie.genres.join(', ') }}</h4>
+                                            <a class="btn btn-primary" (click)="movieDetails(movie.id)">View
+                                                Details</a>
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+
+                            <p class="text-white pt-2 mb-0 text-ellipse" title={{movie?.title_long}}>{{ movie.title }}
+                            </p>
+
+                            <small class="text-light">{{ movie.year }}</small>
+                        </div>
+
+                        <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-12 " *ngFor="let movie of movies let i=index;">
+                            <div class="card img-container border border-2 p-0 rounded ">
+                                <img src="{{ movie.poster_url }}" class="card-img-top h-100" alt="..." height="300px">
+                            
+                                <div class="overlay">
+                                    <h4 class="card-title py-2"><i class='bx bxs-star' style='color:#c8cc0f'></i></h4>
+                                    <h4 class="card-title">{{ movie.rating }} / 10</h4>
+                                    <h4 class="py-2">{{ movie.genre }}</h4>
+                                    <a class="btn btn-primary" routerLink="/movie-details">View Detials</a>
+                                </div>
+                            </div>
+                            <p class="text-white pt-2 mb-0 text-center text-ellipse">
+                                {{movie?.title}}</p>
+                            <small class="text-light">{{ movie.release_year }}</small>
+
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pb-5 pt-2 bg-dark">
+    <div class="container">
+        <h4 class=" text-white py-3 text-center">Latest YIFY Movies Torrents</h4>
+        <div class="row row-cols-1 row-cols-md-3 gap-4 my-2 justify-content-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let movie of movies let i = index;">
+                <div class="card img-container border border-2 p-0 rounded">
+                    <figure class="m-0">
+                        <!-- <img [src]="movie.medium_cover_image ? movie.medium_cover_image : 'assets/itme.jpg'"
+                            class="card-img-top h-100" alt="Movie Poster" height="300px"> -->
+                        <ng-container *ngIf="movie.medium_cover_image">
+                            <img [src]="movie.medium_cover_image" class="card-img-top h-100" title={{movie?.title_long}}
+                                alt="Movie Poster" height="300px">
+                        </ng-container>
+                        <ng-container *ngIf="!movie.medium_cover_image">
+                            <!-- Display a placeholder image or alternative content -->
+                            <img src="assets/itme.jpg" class="card-img-top h-100" alt="Placeholder Image"
+                                title={{movie?.title_long}} height="300px">
+                        </ng-container>
+                        <figcaption>
+                            <div class="overlay">
+                                <h4 class="card-title py-2"><i class='bx bxs-star' style='color:#c8cc0f'></i>
+                                </h4>
+                                <h4 class="card-title">{{ movie.rating }} / 10</h4>
+                                <h4 class="py-2">{{ movie.genres.join(', ') }}</h4>
+                                <a class="btn btn-primary" (click)="movieDetails(movie.id)">View
+                                    Details</a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <p class="text-white pt-2 mb-0 text-ellipse" title={{movie?.title_long}}>{{ movie.title }}
+                </p>
+
+                <small class="text-light">{{ movie.year }}</small>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="pb-5 pt-2" style="background-color: #1d1d1d;">
+    <div class="container">
+        <div class="d-flex justify-content-between text-white  align-items-center mx-auto">
+            <h4 class=" py-3 text-center">Upcoming YIFY Movies</h4>
+            <a href="#"> <small>Request a Movie</small></a>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 gap-4 my-2 justify-content-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let movie of movies let i = index;">
+                <div class="card img-container border border-2 p-0 rounded">
+                    <figure class="m-0">
+                        <!-- <img [src]="movie.medium_cover_image ? movie.medium_cover_image : 'assets/itme.jpg'"
+                            class="card-img-top h-100" alt="Movie Poster" height="300px"> -->
+                        <ng-container *ngIf="movie.medium_cover_image">
+                            <img [src]="movie.medium_cover_image" class="card-img-top h-100" title={{movie?.title_long}}
+                                alt="Movie Poster" height="300px">
+                        </ng-container>
+                        <ng-container *ngIf="!movie.medium_cover_image">
+                            <!-- Display a placeholder image or alternative content -->
+                            <img src="assets/itme.jpg" class="card-img-top h-100" alt="Placeholder Image"
+                                title={{movie?.title_long}} height="300px">
+                        </ng-container>
+                        <figcaption>
+                            <div class="overlay">
+                                <h4 class="card-title py-2"><i class='bx bxs-star' style='color:#c8cc0f'></i>
+                                </h4>
+                                <h4 class="card-title">{{ movie.rating }} / 10</h4>
+                                <h4 class="py-2">{{ movie.genres.join(', ') }}</h4>
+                                <a class="btn btn-primary" (click)="movieDetails(movie.id)">View
+                                    Details</a>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>
+
+                <p class="text-white pt-2 mb-0 text-ellipse" title={{movie?.title_long}}>{{ movie.title }}
+                </p>
+
+                <small class="text-light">{{ movie.year }}</small>
+            </div>
+
+
+        </div>
+    </div>
+</div>

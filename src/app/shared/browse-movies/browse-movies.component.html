@@ -1,0 +1,88 @@
+<div class="loader-container" *ngIf="loading">
+    <div class="loader-logo"></div>
+</div>
+<div class="pb-5 pt-2 mt-5" style="background-color: #1d1d1d;" [ngClass]="{ 'o-5': loading }">
+    <div class="py-5" style="background-color:  #171717;">
+        <div class="container py-5">
+            <div class="d-flex mb-3 ms-5 g-1 gap-2" style="margin-right: 2.5rem;">
+                <div class="col-md-10">
+                    <input type="search" [(ngModel)]="search" (change)="getMovies()" class="form-control flex-grow-1"
+                        placeholder="Search term:">
+                </div>
+                <div class="col-md-2">
+                    <button class="btn btn-success w-100" (click)="getMovies()">Search Movie</button>
+                </div>
+            </div>
+            <div class="d-flex mx-5 g-1 gap-1">
+                <div class="col-md-2">
+                    <label for="quality" class="form-label">Quality:</label>
+                    <select name="quality" id="quality" class="form-select" [(ngModel)]="selectedQuality"
+                        (change)="getMovies()">
+                        <option *ngFor="let quality of qualities" [value]="quality.value">{{ quality.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="gen
+                    re" class="form-label">Genre:</label>
+                    <select name="genre" id="genre" class="form-select" [(ngModel)]="selectedGenre"
+                        (change)="getMovies()">
+                        <option *ngFor="let genre of genres" [value]="genre.value">{{ genre.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="rating" class="form-label">Rating:</label>
+                    <select name="rating" id="rating" class="form-select" [(ngModel)]="selectedRating"
+                        (change)="getMovies()">
+                        <option *ngFor="let rate of ratings" [value]="rate.value">{{ rate.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="year" class="form-label">Year:</label>
+                    <select name="year" id="year" class="form-select" [(ngModel)]="selectedYear">
+                        <option *ngFor="let year of years" [value]="year.value">{{ year.name }}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="language" class="form-label">Language:</label>
+                    <select name="language" id="language" class="form-select" [(ngModel)]="selectedLanguage">
+                        <option *ngFor="let language of languages" [value]="language.value">{{ language.name }}</option>
+                    </select>
+
+                </div>
+                <div class="col-md-2">
+                    <label for="order_by" class="form-label">Order By:</label>
+                    <select name="order_by" id="order_by" class="form-select" [(ngModel)]="selectedOrderBy"
+                        (change)="getMovies()">
+                        <option *ngFor="let order of orderBy" [value]="order.value">{{ order.name }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h4 class=" py-3 text-center text-white">24h YIFY Trending Movies</h4>
+        <div class=" py-3">
+            <pagination-controls class="text-center text-white" (pageChange)="p = $event"></pagination-controls>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 gap-4 my-2 justify-content-center">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12"
+                *ngFor="let movie of movies | paginate: { itemsPerPage: 15, currentPage: p };let i = index;">
+                <div class="card img-container border border-2 p-0 rounded">
+                    <img [src]="movie.medium_cover_image" class="card-img-top h-100" alt="Movie Poster" height="300px">
+                    <div class="overlay">
+                        <h4 class="card-title py-2"><i class='bx bxs-star' style='color:#c8cc0f'></i></h4>
+                        <h4 class="card-title">{{ movie.rating }} / 10</h4>
+                        <h4 class="py-2">{{ movie.genres.join(', ') }}</h4>
+                        <a class="btn btn-primary" [routerLink]="'/movie-details/' + movie.id">View
+                            Details</a>
+                    </div>
+                </div>
+                <p class="text-white pt-2 mb-0 text-ellipse">{{ movie.title }}</p>
+                <small class="text-light">{{ movie.year }}</small>
+            </div>
+        </div>
+        <div class=" py-3">
+            <pagination-controls class="text-center text-white" (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
